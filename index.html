@@ -8,6 +8,7 @@
     
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
       </head>
 
       <body>
@@ -35,13 +36,21 @@
           </div>
         </nav>
         
-        <div class="container-fluid my-5 mx-2">
-          <p class="display-3">
-            Fossils Registers
-          </p>
-        </div>
+        
 
-        <div class="container pt-3 my-5">
+        <div class="container pt-3 my-5" id="elemento">
+          <div class="container-fluid my-5 mx-2">
+            <p class="display-3">
+              Fossil registers
+            </p>
+            <!-- Search form -->
+          <div class="md-form mt-0">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search" @keyup.enter="buscaDino" v-model="busqueda">
+          </div>
+          <p class="display-3" v-if="busc">
+            {{busc}}
+          </p>
+          </div>
           <div class="row">
             <div class="col-sm-4">
               <div class="container p-3 my-3 border" style="height: 600px; overflow: hidden;">
@@ -122,7 +131,14 @@
               </div>
             </div>
           </div>
-
+          <ul>
+            <h1>
+              Lista de dinosaurios
+            </h1>    
+            <li v-for="dino of dinos">
+              <a href="#" >{{dino}}</a>
+            </li>
+          </ul>
         </div>
         
         <!-- Optional JavaScript -->
@@ -130,6 +146,23 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- Vue js-->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+          const con = new Vue({
+            el:"#elemento",
+            data:{
+              busc:'',
+              dinos:["Deinonychus","Troodon","Giganotosaurus","Pachycephalosaurus","Camarasaurus","Carnotaurus","Brachiosaurus","Spinosaurus","Carcharodontosaurus"]
+            },
+            methods: {
+              buscaDino(){
+                this.busc = this.busqueda
+              }
+            }
+
+          })
+        </script>
       </body>
     </html>
 </body>
